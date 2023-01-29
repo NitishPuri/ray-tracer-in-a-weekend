@@ -1,0 +1,21 @@
+cmake_minimum_required(VERSION 3.25.2)
+
+set(NAME RayTracer)
+set(STB_INCLUDE D:/tree/libs/stb)
+
+message(STATUS "Using ${CMAKE_GENERATOR}")
+
+project(${NAME} VERSION 0.0.1)
+
+file(GLOB_RECURSE SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp)
+
+add_executable(${PROJECT_NAME} ${SOURCES})
+
+target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
+
+set_property(TARGET ${PROJECT_NAME} PROPERTY VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/build")
+
+target_include_directories(${PROJECT_NAME} PUBLIC
+    ${PROJECT_SOURCE_DIR}/src
+    ${STB_INCLUDE}
+)
