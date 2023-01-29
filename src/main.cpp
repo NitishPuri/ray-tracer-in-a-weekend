@@ -17,8 +17,8 @@ int main() {
 
     // Image
 
-    const int image_width = 256;
-    const int image_height = 256;
+    const int image_width = 600;
+    const int image_height = 500;
     Image image(image_width, image_height);
 
     // Render
@@ -28,16 +28,9 @@ int main() {
     for (int j = image_height-1; j >= 0; --j) {
         std::cout << "\rScanlines remaining: " << j << ' ' << std::flush;
         for (int i = 0; i < image_width; ++i) {
-            auto r = double(i) / (image_width-1);
-            auto g = double(j) / (image_height-1);
-            auto b = 0.25;
+            color pixel_color(double(i) / (image_width-1), double(j) / (image_height-1), 0.25);
 
-
-            Color c{};
-            c.rgb[0] = ir;
-            c.rgb[1] = ig;
-            c.rgb[2] = ib;
-            image.set(i, j, c);
+            image.set(i, j, pixel_color);
         }
     }
 

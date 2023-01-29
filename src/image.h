@@ -1,5 +1,7 @@
 #pragma once
 
+#include "color.h"
+
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include <stb_image_write.h>
 
@@ -18,7 +20,7 @@ public:
         } 
     }
 
-    void Image::set(int x, int y, Color color) {
+    void Image::set(int x, int y, ImageColor color) {
         if (!data || x < 0 || y < 0 || x >= width || y >= height) {
             return;
         }
@@ -26,13 +28,13 @@ public:
         memcpy(data + (x + y * width) * num_components, color.rgb, num_components);
     }
 
-    Color get(int x, int y) const {
-        Color c {};
-        c.rgb[0] = data[x + y * width + 0];
-        c.rgb[1] = data[x + y * width + 1];
-        c.rgb[2] = data[x + y * width + 2];
-        return c;
-    }
+    // Color get(int x, int y) const {
+    //     Color c {};
+    //     c.rgb[0] = data[x + y * width + 0];
+    //     c.rgb[1] = data[x + y * width + 1];
+    //     c.rgb[2] = data[x + y * width + 2];
+    //     return c;
+    // }
 
     int write(const std::string& filename, bool flip = true) {
         return stbi_write_bmp(filename.c_str(), width, height, num_components, data);
