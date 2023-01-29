@@ -4,6 +4,17 @@
 
 #include <iostream>
 
+struct Color {
+    using uchar = unsigned char;
+    Color(int r, int g, int b) : rgb{r, g, b} {}
+    Color(const color& color) : rgb(){
+        rgb[0] = static_cast<uchar>(255.999 * color.x());
+        rgb[1] = static_cast<uchar>(255.999 * color.y());
+        rgb[2] = static_cast<uchar>(255.999 * color.z());        
+    }
+    uchar rgb[3];
+};
+
 void write_color(std::ostream& out, color pixel_color) {
     // Write the translated [0,255] value of each color component.
     out << static_cast<int>(255.999 * pixel_color.x()) << ' '

@@ -1,8 +1,17 @@
 
 #include "image.h"
+#include "ray.h"
+#include "vec3.h"
+#include "color.h"
 
 #include <string>
 #include <iostream>
+
+color ray_color(const ray& r) {
+    vec3 unit_direction = unit_vector(r.direction());
+    auto t = 0.5 * (unit_direction.y() + 1.0);
+    return (1.0 - t) * color(1.0, 1.0, 1.0) + t * color(0.5, 0.7, 1.0);
+}
 
 int main() {
 
@@ -23,9 +32,6 @@ int main() {
             auto g = double(j) / (image_height-1);
             auto b = 0.25;
 
-            int ir = static_cast<int>(255.999 * r);
-            int ig = static_cast<int>(255.999 * g);
-            int ib = static_cast<int>(255.999 * b);
 
             Color c{};
             c.rgb[0] = ir;

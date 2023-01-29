@@ -5,10 +5,6 @@
 
 #include <string>
 
-struct Color {
-    using uchar = unsigned char;
-    uchar rgb[3];
-};
 
 class Image {
 public:
