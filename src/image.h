@@ -37,7 +37,8 @@ public:
     // }
 
     int write(const std::string& filename, bool flip = true) {
-        return stbi_write_bmp(filename.c_str(), width, height, num_components, data);
+        return stbi_write_jpg(filename.c_str(), width, height, num_components, data, 95);
+        // return stbi_write_bmp(filename.c_str(), width, height, num_components, data);
     }
 
 private:
