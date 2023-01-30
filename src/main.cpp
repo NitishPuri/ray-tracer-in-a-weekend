@@ -10,10 +10,10 @@
 #include <iostream>
 
 color ray_color(const ray& r, const hittable& world) {
-
     hit_record rec;
     if(world.hit(r, 0, infinity, rec)) {
-        return 0.5 * (rec.normal + color(1, 1, 1));
+        point3 target = rec.p + rec.normal + random_in_unit_sphere();
+        return 0.5 * ray_color(ray(rec.p, target - rec.p), world);
     }
 
     vec3 unit_direction = unit_vector(r.direction());
@@ -56,6 +56,6 @@ int main() {
         }
     }
 
-    image.write("../../results/sphereNormalsAntiAliasing.jpg");
+    image.write("../../results/sphereNormalsAntiDiffuse.jpg");
     
 }
