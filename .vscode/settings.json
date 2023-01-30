@@ -3,5 +3,8 @@
         "activityBar.background": "#571714",
         "titleBar.activeBackground": "#79211C",
         "titleBar.activeForeground": "#FEFBFB"
+    },
+    "files.associations": {
+        "memory": "cpp"
     }
 }
