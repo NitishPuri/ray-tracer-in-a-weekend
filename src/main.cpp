@@ -57,7 +57,10 @@ int main() {
                 pixel_color += ray_color(r, world, max_depth);
             }
 
-            image.set(i, j, pixel_color / samples_per_pixel);
+             // Divide the color by the number of samples and gamma-correct for gamma=2.0.
+            pixel_color = sqrt(pixel_color / samples_per_pixel);
+                        
+            image.set(i, j, pixel_color );
         }
     }
 

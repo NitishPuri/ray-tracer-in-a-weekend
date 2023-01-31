@@ -106,6 +106,10 @@ inline vec3 unit_vector(vec3 v) {
     return v / v.length();
 }
 
+inline vec3 sqrt(vec3 v) {
+    return vec3(sqrt(v.e[0]), sqrt(v.e[1]), sqrt(v.e[2]));
+}
+
 vec3 random_in_unit_sphere() {
     while (true) {
         auto p = vec3::random(-1, 1);
