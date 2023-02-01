@@ -1,1 +1,1 @@
-build\Debug\RayTracer.exe
+build\Release\RayTracer.exe

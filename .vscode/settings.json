@@ -5,6 +5,15 @@
         "titleBar.activeForeground": "#FEFBFB"
     },
     "files.associations": {
-        "memory": "cpp"
+        "memory": "cpp",
+        "charconv": "cpp",
+        "filesystem": "cpp",
+        "istream": "cpp",
+        "ostream": "cpp",
+        "sstream": "cpp",
+        "streambuf": "cpp",
+        "system_error": "cpp",
+        "xlocbuf": "cpp",
+        "xstring": "cpp"
     }
 }

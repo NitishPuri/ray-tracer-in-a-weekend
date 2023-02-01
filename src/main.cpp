@@ -9,6 +9,8 @@
 
 #include <string>
 #include <iostream>
+#include <filesystem>
+
 
 color ray_color(const ray& r, const hittable& world, int depth) {
     hit_record rec;
@@ -30,10 +32,10 @@ color ray_color(const ray& r, const hittable& world, int depth) {
 }
 
 int main() {
-
+    
     // Image
     const auto aspect_ratio = 16.0 / 9.0;
-    const int image_width = 500;
+    const int image_width = 1000;
     const int image_height = static_cast<int>(image_width / aspect_ratio);
     const int samples_per_pixel = 100;
     const int max_depth = 50;
@@ -77,6 +79,12 @@ int main() {
     }
 
     // image.write("../../results/sphereTrueLambertian.jpg");
-    image.write("sphereMaterial.jpg");
+    std::string result_path("results/sphereMaterial.jpg");
+    std::cout << "\nWriting result to :: " << std::filesystem::current_path().append(result_path) << std::endl;
+    if(image.write(result_path) != 0) {
+        std::cout << "Success!";
+    } else {
+        std::cout << "Failed!";
+    }
     
 }
