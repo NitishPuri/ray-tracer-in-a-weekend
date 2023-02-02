@@ -46,8 +46,8 @@ int main() {
 
     auto material_ground = make_shared<lambertian>(color{0.8, 0.8, 0.0});
     auto material_center = make_shared<lambertian>(color{0.7, 0.3, 0.3});
-    auto material_left = make_shared<metal>(color{0.8, 0.8, 0.0});
-    auto material_right = make_shared<metal>(color{0.8, 0.6, 0.2});
+    auto material_left = make_shared<metal>(color{0.8, 0.8, 0.0}, 0.3);
+    auto material_right = make_shared<metal>(color{0.8, 0.6, 0.2}, 1);
 
     world.add(make_shared<sphere>(point3(0.0, -100.5, -1.0), 100, material_ground));
     world.add(make_shared<sphere>(point3(0.0, 0.0, -1.0), 0.5, material_center));
@@ -59,6 +59,9 @@ int main() {
 
     // Render    
     std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
+
+    auto startTime = std::chrono::high_resolution_clock::now();
+
 
     for (int j = image_height-1; j >= 0; --j) {
         std::cout << "\rScanlines remaining: " << j << ' ' << std::flush;
@@ -78,8 +81,12 @@ int main() {
         }
     }
 
+    auto endTime = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration<float, std::chrono::seconds::period>(endTime - startTime).count();
+    std::cout << "Image generated in " << duration << "seconds\n";
+
     // image.write("../../results/sphereTrueLambertian.jpg");
-    std::string result_path("results/sphereMaterial.jpg");
+    std::string result_path("results/sphereMaterialFuzz.jpg");
     std::cout << "\nWriting result to :: " << std::filesystem::current_path().append(result_path) << std::endl;
     if(image.write(result_path) != 0) {
         std::cout << "Success!";
