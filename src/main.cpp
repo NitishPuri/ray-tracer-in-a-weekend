@@ -59,7 +59,13 @@ int main() {
     world.add(make_shared<sphere>(point3(1, 0.0, -1.0), 0.5, material_right));
 
     // Camera
-    camera cam(point3(-2, 2, 1), point3(0, 0, -1), vec3(0, 1, 0), 20.0, aspect_ratio);
+    point3 lookfrom(3, 3, 2);
+    point3 lookat(0, 0, -1);
+    vec3 vup(0, 1, 0);
+    auto dist_to_focus = (lookfrom - lookat).length();
+    auto aperture = 2.0;
+
+    camera cam(lookfrom, lookat, vup, 20.0, aspect_ratio, aperture, dist_to_focus);
 
     // Render    
     std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
@@ -90,7 +96,7 @@ int main() {
     std::cout << "Image generated in " << duration << "seconds\n";
 
     // image.write("../../results/sphereTrueLambertian.jpg");
-    std::string result_path("results/sphereCamera3.jpg");
+    std::string result_path("results/sphereDefocsBlur.jpg");
     std::cout << "\nWriting result to :: " << std::filesystem::current_path().append(result_path) << std::endl;
     if(image.write(result_path) != 0) {
         std::cout << "Success!";
