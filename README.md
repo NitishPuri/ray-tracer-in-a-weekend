@@ -79,3 +79,9 @@ Resources :
 
 ## Texture / Perlin Noise / Shifted
 ![spheresPerlinShifted](./results/spheresPerlinShifted.jpg)
+
+## Texture / Perlin Noise / Turbulence
+![spheresPerlinTurb](./results/spheresPerlinTurb.jpg)
+
+## Texture / Perlin Noise / Marbles
+![spheresMarbles](./results/spheresMarbles.jpg)
