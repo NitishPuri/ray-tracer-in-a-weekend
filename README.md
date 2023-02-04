@@ -94,3 +94,6 @@ Resources :
 
 ## Cornell Box with Light
 ![cornellBox1](./results/cornellBox1.jpg)
+
+## Cornell Box with Boxes
+![cornellBox2](./results/cornellBox2.jpg)

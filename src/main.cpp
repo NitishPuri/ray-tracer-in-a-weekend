@@ -10,6 +10,7 @@
 #include "bvh_node.h"
 #include "perlin.h"
 #include "aarect.h"
+#include "box.h"
 
 #include <string>
 #include <iostream>
@@ -147,7 +148,9 @@ hittable_list cornell_box() {
     objects.add(make_shared<xz_rect>(0, 555, 0, 555, 0, white));
     objects.add(make_shared<xz_rect>(0, 555, 0, 555, 555, white));
     objects.add(make_shared<xy_rect>(0, 555, 0, 555, 555, white));
-    //objects.add(make_shared<xy_rect>(0, 555, 0, 555, 10, white));
+
+    objects.add(make_shared<box>(point3(130, 0, 65), point3(295, 165, 230), white));
+    objects.add(make_shared<box>(point3(265, 0, 295), point3(430, 330, 460), white));
 
     return objects;
 }
@@ -265,7 +268,7 @@ int main() {
     std::cout << "Image generated in " << duration << "seconds\n";
 
     // image.write("../../results/sphereTrueLambertian.jpg");
-    std::string result_path(ROOT "/results/cornellBox1.jpg");
+    std::string result_path(ROOT "/results/cornellBox2.jpg");
     std::cout << "\nWriting result to :: " << std::filesystem::current_path().append(result_path) << std::endl;
     if(image.write(result_path) != 0) {
         std::cout << "Success!";
