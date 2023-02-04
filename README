@@ -7,11 +7,11 @@ Resources :
 # Results 
 
 ## Initial gradient based background
-<img src="./results/background1.jpg" alt="background" style="width:50%; height:50%">
+![Inital Background](./results/background1.jpg)
 
 ## Sphere with flat color
-<img src="./results/sphere1.jpg" alt="background" style="width:50%; height:50%">
+![Sphere with flat color](./results/sphere1.jpg)
 
 ## Sphere with normals visualized
-<img src="./results/sphereNormals.jpg" alt="background" style="width:50%; height:50%">
+![Sphere with normals visualized](./results/sphereNormals.jpg)
 
