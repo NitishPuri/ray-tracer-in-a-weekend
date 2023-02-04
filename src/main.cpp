@@ -11,6 +11,9 @@
 #include <iostream>
 #include <filesystem>
 
+#ifndef ROOT
+#define ROOT "."
+#endif // !ROOT
 
 color ray_color(const ray& r, const hittable& world, int depth) {
     hit_record rec;
@@ -78,10 +81,13 @@ hittable_list random_scene() {
 }
 
 int main() {
+
+    std::cout << ROOT << std::endl;
     
     // Image
     const auto aspect_ratio = 3.0 / 2.0;
-    const int image_width = 1200;
+    //const int image_width = 1200;
+    const int image_width = 10;
     const int image_height = static_cast<int>(image_width / aspect_ratio);
     const int samples_per_pixel = 500;
     const int max_depth = 50;
@@ -128,7 +134,7 @@ int main() {
     std::cout << "Image generated in " << duration << "seconds\n";
 
     // image.write("../../results/sphereTrueLambertian.jpg");
-    std::string result_path("results/final1.jpg");
+    std::string result_path(ROOT "/results/final1.jpg");
     std::cout << "\nWriting result to :: " << std::filesystem::current_path().append(result_path) << std::endl;
     if(image.write(result_path) != 0) {
         std::cout << "Success!";
