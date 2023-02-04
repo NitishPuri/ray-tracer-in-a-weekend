@@ -47,6 +47,20 @@ public:
         return perlin_interp(c, u, v, w);
     }
 
+    double turb(const point3& p, int depth = 7) const {
+        auto accum = 0.0;
+        auto temp_p = p;
+        auto weight = 1.0;
+
+        for (int i = 0; i < depth; i++) {
+            accum += weight * noise(temp_p);
+            weight *= 0.5;
+            temp_p *= 2;
+        }
+
+        return fabs(accum);
+    }
+
 private:
     static const int point_count = 256;
     vec3* ranvec;
@@ -112,7 +126,8 @@ public:
     noise_texture(double sc) : scale{sc} {}
 
     virtual color value(double u, double v, const point3& p) const override {
-        return color(1, 1, 1) * 0.5 * ( 1.0 + noise.noise(scale * p) );
+        //return color(1, 1, 1) * 0.5 * (1.0 + noise.turb(scale * p));
+        return color(1, 1, 1) * noise.turb(scale * p);
     }
 
 private:
