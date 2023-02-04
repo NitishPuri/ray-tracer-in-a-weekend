@@ -64,3 +64,6 @@ Resources :
 
 ## Moving Spheres / Motion Blur
 ![movingSpheres](./results/movingSpheres.jpg)
+
+## Texture / Checker texture
+![movingSpheresChecker](./results/movingSpheresChecker.jpg)
