@@ -97,3 +97,8 @@ Resources :
 
 ## Cornell Box with Boxes
 ![cornellBox2](./results/cornellBox2.jpg)
+
+## Cornell Box with Rotated Boxes
+![cornellBox3](./results/cornellBox3.jpg)
+
+
