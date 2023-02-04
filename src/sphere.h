@@ -11,9 +11,9 @@ class sphere : public hittable {
 
         bool hit(const ray& r, double t_min, double t_max, hit_record& rec) const override;
     public:
-        point3 center;
-        double radius;
-        shared_ptr<material> mat_ptr;
+        point3 center{};
+        double radius{};
+        shared_ptr<material> mat_ptr = nullptr;
 };
 
 bool sphere::hit(const ray& r, double t_min, double t_max, hit_record& rec) const {
