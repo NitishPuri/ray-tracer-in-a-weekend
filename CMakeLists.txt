@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.25.2)
+cmake_minimum_required(VERSION 3.8)
 
 set(NAME RayTracer)
 set(STB_INCLUDE D:/tree/libs/stb)
