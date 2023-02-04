@@ -85,3 +85,9 @@ Resources :
 
 ## Texture / Perlin Noise / Marbles
 ![spheresMarbles](./results/spheresMarbles.jpg)
+
+## Texture / Image Texture / Earth
+![earth](./results/earth1.jpg)
+
+## Light
+![light1](./results/light1.jpg)

@@ -9,6 +9,7 @@
 #include "moving_sphere.h"
 #include "bvh_node.h"
 #include "perlin.h"
+#include "aarect.h"
 
 #include <string>
 #include <iostream>
@@ -119,6 +120,19 @@ hittable_list earth() {
     return hittable_list(globe);
 }
 
+hittable_list simple_light() {
+    hittable_list objects;
+
+    auto pertext = make_shared<noise_texture>(4);
+    objects.add(make_shared<sphere>(point3(0, -1000, 0), 1000, make_shared<lambertian>(pertext)));
+    objects.add(make_shared<sphere>(point3(0, 2, 0), 2, make_shared<lambertian>(pertext)));
+
+    auto difflight = make_shared<diffuse_light>(color(4, 4, 4));
+    objects.add(make_shared<xy_rect>(3, 5, 1, 3, -2, difflight));
+
+    return objects;
+}
+
 int main() {
 
     std::cout << ROOT << std::endl;
@@ -128,7 +142,7 @@ int main() {
     const int image_width = 500;
     //const int image_width = 10;
     const int image_height = static_cast<int>(image_width / aspect_ratio);
-    const int samples_per_pixel = 100;
+    int samples_per_pixel = 100;
     const int max_depth = 50;
     Image image(image_width, image_height);
 
@@ -141,7 +155,7 @@ int main() {
     auto aperture = 0.0;
     color background(0, 0, 0);
 
-    switch (4) {
+    switch (5) {
     case 1:
         world = random_scene();
         background = color(0.7, 0.8, 1.0);
@@ -171,6 +185,14 @@ int main() {
         background = color(0.7, 0.8, 1.0);
         lookfrom = point3(13, 2, 3);
         lookat = point3(0, 0, 0);
+        vfov = 20.0;
+        break;
+    case 5:
+        world = simple_light();
+        samples_per_pixel = 400;
+        background = color(0, 0, 0);
+        lookfrom = point3(26, 3, 6);
+        lookat = point3(0, 2, 0);
         vfov = 20.0;
         break;
     }
@@ -214,7 +236,7 @@ int main() {
     std::cout << "Image generated in " << duration << "seconds\n";
 
     // image.write("../../results/sphereTrueLambertian.jpg");
-    std::string result_path(ROOT "/results/earth1.jpg");
+    std::string result_path(ROOT "/results/light1.jpg");
     std::cout << "\nWriting result to :: " << std::filesystem::current_path().append(result_path) << std::endl;
     if(image.write(result_path) != 0) {
         std::cout << "Success!";
