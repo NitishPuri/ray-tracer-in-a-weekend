@@ -1,10 +1,11 @@
 Ray tracer in a weekend.
 
 Resources :
-* https://raytracing.github.io/books/RayTracingInOneWeekend.html
+* https://raytracing.github.io
 * https://github.com/nothings/stb
 
-# Results 
+
+# [Ray Tracing In One Weekend](https://raytracing.github.io/books/RayTracingInOneWeekend.html)
 
 ## Initial gradient based background
 ![Inital Background](results/background1.jpg)
@@ -58,4 +59,6 @@ Resources :
 ## A Final Render
 ![final1](./results/final1.jpg)
 
+
+# [Ray Tracing The Next Week](https://raytracing.github.io/books/RayTracingTheNextWeek.html)
 

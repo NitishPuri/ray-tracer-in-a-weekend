@@ -9,7 +9,9 @@ project(${NAME} VERSION 0.0.1)
 
 file(GLOB_RECURSE SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp)
 
-add_executable(${PROJECT_NAME} ${SOURCES})
+file(GLOB_RECURSE HEADERS ${PROJECT_SOURCE_DIR}/src/*.h)
+
+add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
 
