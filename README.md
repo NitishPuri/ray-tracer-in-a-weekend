@@ -71,4 +71,6 @@ Resources :
 ## Texture / Perlin Noise
 ![spheresPerlin](./results/spheresPerlin.jpg)
 
+## Texture / Perlin Noise / With Trilinear interpolation
+![spheresPerlinInterp](./results/spheresPerlinInterp.jpg)
 

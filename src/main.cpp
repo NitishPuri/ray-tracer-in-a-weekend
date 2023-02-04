@@ -190,7 +190,7 @@ int main() {
     std::cout << "Image generated in " << duration << "seconds\n";
 
     // image.write("../../results/sphereTrueLambertian.jpg");
-    std::string result_path(ROOT "/results/spheresPerlin.jpg");
+    std::string result_path(ROOT "/results/spheresPerlinInterp.jpg");
     std::cout << "\nWriting result to :: " << std::filesystem::current_path().append(result_path) << std::endl;
     if(image.write(result_path) != 0) {
         std::cout << "Success!";
