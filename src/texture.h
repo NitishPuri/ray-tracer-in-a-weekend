@@ -15,7 +15,7 @@ public:
     solid_color(double red, double green, double blue)
         : solid_color(color(red, green, blue)) {}
 
-    color value(double u, double v, point3& p) const override {
+    color value(double u, double v, const point3& p) const override {
         return color_value;
     }
 
