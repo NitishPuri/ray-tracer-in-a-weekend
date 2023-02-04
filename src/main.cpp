@@ -8,7 +8,7 @@
 #include "material.h"
 #include "moving_sphere.h"
 #include "bvh_node.h"
-
+#include "perlin.h"
 
 #include <string>
 #include <iostream>
@@ -96,6 +96,16 @@ hittable_list two_spheres() {
     return objects;
 }
 
+hittable_list two_perlin_spheres() {
+    hittable_list objects;
+
+    auto pertext = make_shared<noise_texture>();
+    objects.add(make_shared<sphere>(point3(0, -1000, 0), 1000, make_shared<lambertian>(pertext)));
+    objects.add(make_shared<sphere>(point3(0, 2, 0), 2, make_shared<lambertian>(pertext)));
+
+    return objects;
+}
+
 int main() {
 
     std::cout << ROOT << std::endl;
@@ -117,7 +127,7 @@ int main() {
     auto vfov = 40.0;
     auto aperture = 0.0;
 
-    switch (2) {
+    switch (3) {
     case 1:
         world = random_scene();
         lookfrom = point3(13, 2, 3);
@@ -129,6 +139,12 @@ int main() {
     default:
     case 2:
         world = two_spheres();
+        lookfrom = point3(13, 2, 3);
+        lookat = point3(0, 0, 0);
+        vfov = 20.0;
+        break;
+    case 3:
+        world = two_perlin_spheres();
         lookfrom = point3(13, 2, 3);
         lookat = point3(0, 0, 0);
         vfov = 20.0;
@@ -174,7 +190,7 @@ int main() {
     std::cout << "Image generated in " << duration << "seconds\n";
 
     // image.write("../../results/sphereTrueLambertian.jpg");
-    std::string result_path(ROOT "/results/spheresChecker.jpg");
+    std::string result_path(ROOT "/results/spheresPerlin.jpg");
     std::cout << "\nWriting result to :: " << std::filesystem::current_path().append(result_path) << std::endl;
     if(image.write(result_path) != 0) {
         std::cout << "Success!";

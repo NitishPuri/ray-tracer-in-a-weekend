@@ -67,3 +67,8 @@ Resources :
 
 ## Texture / Checker texture
 ![movingSpheresChecker](./results/movingSpheresChecker.jpg)
+
+## Texture / Perlin Noise
+![spheresPerlin](./results/spheresPerlin.jpg)
+
+
