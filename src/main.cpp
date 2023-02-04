@@ -117,7 +117,7 @@ int main() {
     auto vfov = 40.0;
     auto aperture = 0.0;
 
-    switch (0) {
+    switch (2) {
     case 1:
         world = random_scene();
         lookfrom = point3(13, 2, 3);
@@ -174,7 +174,7 @@ int main() {
     std::cout << "Image generated in " << duration << "seconds\n";
 
     // image.write("../../results/sphereTrueLambertian.jpg");
-    std::string result_path(ROOT "/results/movingSpheresChecker.jpg");
+    std::string result_path(ROOT "/results/spheresChecker.jpg");
     std::cout << "\nWriting result to :: " << std::filesystem::current_path().append(result_path) << std::endl;
     if(image.write(result_path) != 0) {
         std::cout << "Success!";
