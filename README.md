@@ -101,4 +101,9 @@ Resources :
 ## Cornell Box with Rotated Boxes
 ![cornellBox3](./results/cornellBox3.jpg)
 
+## Cornell Box with Volumetric Smoke
+![cornellBox4](./results/cornellBox4.jpg)
+
+## Final
+![final2](./results/final2.jpg)
 
