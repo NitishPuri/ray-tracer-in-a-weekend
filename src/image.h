@@ -3,25 +3,30 @@
 #include "color.h"
 
 #define STB_IMAGE_WRITE_IMPLEMENTATION
-#include <stb_image_write.h>
+#include "stb/stb_image_write.h"
 
 #include <string>
 
-
-class Image {
+class Image
+{
 public:
-    Image(int w, int h)  : width(w), height(h) {
-        data = (unsigned char*) malloc(width * height * 3);
+    Image(int w, int h) : width(w), height(h)
+    {
+        data = (unsigned char *)malloc(width * height * 3);
     }
-    ~Image() {
-        if(data) {
+    ~Image()
+    {
+        if (data)
+        {
             free(data);
             data = nullptr;
-        } 
+        }
     }
 
-    void Image::set(int x, int y, ImageColor color) {
-        if (!data || x < 0 || y < 0 || x >= width || y >= height) {
+    void Image::set(int x, int y, ImageColor color)
+    {
+        if (!data || x < 0 || y < 0 || x >= width || y >= height)
+        {
             return;
         }
 
@@ -36,14 +41,15 @@ public:
     //     return c;
     // }
 
-    int write(const std::string& filename, bool flip = true) {
+    int write(const std::string &filename, bool flip = true)
+    {
         stbi_flip_vertically_on_write(1);
         return stbi_write_jpg(filename.c_str(), width, height, num_components, data, 95);
         // return stbi_write_bmp(filename.c_str(), width, height, num_components, data);
     }
 
 private:
-    unsigned char* data = nullptr;
+    unsigned char *data = nullptr;
     int width = 0;
     int height = 0;
     const int num_components = 3;

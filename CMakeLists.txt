@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.8)
 
 set(NAME RayTracer)
-set(STB_INCLUDE D:/tree/libs/stb)
 
 message(STATUS "Using ${CMAKE_GENERATOR}")
 
@@ -21,5 +20,5 @@ target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
 
 target_include_directories(${PROJECT_NAME} PUBLIC
     ${PROJECT_SOURCE_DIR}/src
-    ${STB_INCLUDE}
+    ${PROJECT_SOURCE_DIR}/ext
 )
