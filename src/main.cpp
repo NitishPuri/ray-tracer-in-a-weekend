@@ -3,6 +3,9 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <thread>
+#include <vector>
+#include <future>
 
 #include "aarect.h"
 #include "bvh_node.h"
@@ -442,13 +445,45 @@ int main()
   auto startTime = std::chrono::high_resolution_clock::now();
 
   Image image(image_width, image_height);
+
+#define MULTITHREADED
+#ifdef MULTITHREADED
+  const int num_threads = std::thread::hardware_concurrency();
+  std::vector<std::future<void>> futures;
+  int rows_per_thread = image_height / num_threads;
+
+  for (int t = 0; t < num_threads; ++t)
+  {
+    int start_row = t * rows_per_thread;
+    int end_row = (t == num_threads - 1) ? image_height : start_row + rows_per_thread;
+
+    // std::async(std::launch::async, render_section, std::ref(image), start_row, end_row, image_width, image_height, samples_per_pixel, std::ref(cam), std::ref(background), std::ref(world_bvh), max_depth);
+    futures.push_back(
+        std::async(std::launch::async, render_section,
+                   std::ref(image), start_row, end_row,
+                   image_width, image_height,
+                   samples_per_pixel,
+                   std::ref(cam), std::ref(background),
+                   std::ref(world_bvh), max_depth));
+  }
+
+  for (auto &f : futures)
+  {
+    f.get();
+  }
+#else // SINGLETHREADED
+
+  // Image image(image_width, image_height);
   render_section(image, 0, image_height, image_width, image_height,
                  samples_per_pixel, cam, background, world_bvh, max_depth);
+
+#endif
 
   auto endTime = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration<float, std::chrono::seconds::period>(
                       endTime - startTime)
                       .count();
+
   logger.log("Image generated in ", duration, " seconds");
 
   std::string result_path(ROOT "/results/final21.jpg");
