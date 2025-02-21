@@ -1,1 +1,2 @@
-build\Release\RayTracer.exe
+build\Release\RayTracer.exe %1
+
