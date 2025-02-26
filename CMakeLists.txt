@@ -23,3 +23,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 
 # Estimate pi
 add_executable(estimate_pi src/estimate_pi.cpp)
+
+
+# Integrate x^2
+add_executable(integrate_x2 src/integrate_x2.cpp)
